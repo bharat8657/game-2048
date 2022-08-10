@@ -13,6 +13,11 @@ public abstract class GameLogic extends JPanel {
 
     @Getter
     public int myScore = 0;
+
+    private static final double NEW_VALUE_PERCENTAGE = 0.9;
+    private static final int ANGLE_RIGHT = 180;
+    private static final int ANGLE_DOWN = 270;
+    private static final int ANGLE_UP = 90;
     Tile[] myTiles;
     boolean myWin = false;
     boolean myLose = false;
@@ -46,29 +51,29 @@ public abstract class GameLogic extends JPanel {
     }
 
     public void right() {
-        myTiles = rotate(180);
+        myTiles = rotate(ANGLE_RIGHT);
         left();
-        myTiles = rotate(180);
+        myTiles = rotate(ANGLE_RIGHT);
     }
 
     public void up() {
-        myTiles = rotate(270);
+        myTiles = rotate(ANGLE_DOWN);
         left();
-        myTiles = rotate(90);
+        myTiles = rotate(ANGLE_UP);
     }
 
     public void down() {
-        myTiles = rotate(90);
+        myTiles = rotate(ANGLE_UP);
         left();
-        myTiles = rotate(270);
+        myTiles = rotate(ANGLE_DOWN);
     }
 
     private void addTile() {
         List<Tile> list = availableSpace();
         if (!availableSpace().isEmpty()) {
             int index = (int) (Math.random() * list.size()) % list.size();
-            Tile emptyTime = list.get(index);
-            emptyTime.value = Math.random() < 0.9 ? 2 : 4;
+            Tile emptyTile = list.get(index);
+            emptyTile.value = Math.random() < NEW_VALUE_PERCENTAGE ? 2 : 4;
         }
     }
 
