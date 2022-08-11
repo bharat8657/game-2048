@@ -26,10 +26,10 @@ public class Main extends GameLogic {
                     resetGame();
                 }
                 if (canMove()) {
-                    myLose = true;
+                    lose = true;
                 }
 
-                if (!myWin && !myLose) {
+                if (!win && !lose) {
                     switch (e.getKeyCode()) {
                         case KeyEvent.VK_LEFT:
                             left();
@@ -46,8 +46,8 @@ public class Main extends GameLogic {
                     }
                 }
 
-                if (!myWin && canMove()) {
-                    myLose = true;
+                if (!win && canMove()) {
+                    lose = true;
                 }
 
                 repaint();
@@ -91,20 +91,20 @@ public class Main extends GameLogic {
         if (value != 0)
             g.drawString(s, xOffset + (TILE_SIZE - w) / 2, yOffset + TILE_SIZE - (TILE_SIZE - h) / 2 - 2);
 
-        if (myWin || myLose) {
+        if (win || lose) {
             g.setColor(new Color(255, 255, 255, 30));
             g.fillRect(0, 0, getWidth(), getHeight());
 
             g.setFont(new Font(SANS_SERIF, BOLD, 48));
-            if (myWin) {
+            if (win) {
                 g.setColor(new Color(61, 157, 0));
                 g.drawString("You won!", 68, 150);
             }
-            if (myLose) {
+            if (lose) {
                 g.setColor(new Color(225, 0, 0));
                 g.drawString("Game over!", 50, 130);
             }
-            if (myWin || myLose) {
+            if (win || lose) {
                 g.setFont(new Font(SANS_SERIF, BOLD, 16));
                 g.setColor(new Color(128, 128, 128, 128));
                 g.drawString("Press SPACE to play again", TILE_SIZE, getHeight() - TILE_SIZE - TILES_MARGIN);

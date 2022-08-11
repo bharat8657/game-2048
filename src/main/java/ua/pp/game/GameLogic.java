@@ -19,13 +19,13 @@ public abstract class GameLogic extends JPanel {
     private static final int ANGLE_DOWN = 270;
     private static final int ANGLE_UP = 90;
     Tile[] myTiles;
-    boolean myWin = false;
-    boolean myLose = false;
+    boolean win = false;
+    boolean lose = false;
 
     void resetGame() {
         myScore = 0;
-        myWin = false;
-        myLose = false;
+        win = false;
+        lose = false;
         myTiles = new Tile[TILE_COUNT * TILE_COUNT];
         for (int i = 0; i < myTiles.length; i++) {
             myTiles[i] = new Tile();
@@ -171,7 +171,7 @@ public abstract class GameLogic extends JPanel {
                 myScore += num;
                 int ourTarget = 2048;
                 if (num == ourTarget) {
-                    myWin = true;
+                    win = true;
                 }
                 i++;
             }
